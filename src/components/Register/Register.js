@@ -1,8 +1,10 @@
+import { getAuth } from 'firebase/auth';
 import React from 'react';
-import useFirebase from '../../hooks/useFirebase';
-
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth'
+import app from '../../firebase.init';
+const auth = getAuth(app);
 const Register = () => {
-    const {signInWithGoogle} = useFirebase();
+    const [signInWithGoogle] = useSignInWithGoogle(auth)
     return (
         <div>
             <h1>Please Register</h1>
@@ -50,7 +52,7 @@ const Register = () => {
                 <div className="md:flex md:items-center mb-4">
                     
                     <div className="w-full">
-                        <button className="shadow bg-indigo-500 hover:bg-indigo-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" onClick={signInWithGoogle}>
+                        <button className="shadow bg-indigo-500 hover:bg-indigo-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" onClick={()=> signInWithGoogle()}>
                             Continue with Google
                         </button>
                     </div>
